@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ljf.mybaits.relation.mapping.dao.OrdersMapper">
+    <resultMap id="orderMap" type="order">
+        <!--手动指定字段与实体属性的映射关系
+            column: 数据表的字段名称
+            property：实体的属性名称
+        -->
+        <!--  -->
+        <id column="oid" property="id"></id>
+        <result column="order_time" property="orderTime"></result>
+        <result column="total" property="total"></result>
+
+        <!-- 方式一： user为Users实体中User类型的属性名  -->
+        <result column="id" property="user.id"></result>
+        <result column="user_name" property="user.userName"></result>
+        <result column="password" property="user.password"></result>
+        <result column="birthday" property="user.birthday"></result>
+
+        <!--  方法二：
+            property: 当前实体(order)中的属性名称(private User user)
+            javaType: 当前实体(order)中的属性的类型(User)
+        <association property="user" javaType="user">
+            <id column="id" property="id"></id>
+            <result column="user_name" property="userName"></result>
+            <result column="password" property="password"></result>
+            <result column="birthday" property="birthday"></result>
+        </association>
+-->
+    </resultMap>
+
+    <select id="findAll" resultMap="orderMap">
+         SELECT o.id oid,o.order_time,o.total,u.id,u.user_name,u.birthday FROM tb_orders o,tb_users u WHERE o.uid=u.id
+    </select>
+
+</mapper>
