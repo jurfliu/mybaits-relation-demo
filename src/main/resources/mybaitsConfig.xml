@@ -6,6 +6,7 @@
     <typeAliases>
         <typeAlias type="com.ljf.mybaits.relation.mapping.domain.Users" alias="user"></typeAlias>
         <typeAlias type="com.ljf.mybaits.relation.mapping.domain.Orders" alias="order"></typeAlias>
+        <typeAlias type="com.ljf.mybaits.relation.mapping.domain.Role" alias="role"></typeAlias>
     </typeAliases>
     <!-- 注册类型注册器
     <typeHandlers>

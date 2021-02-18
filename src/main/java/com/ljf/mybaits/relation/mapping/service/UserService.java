@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface UserService {
     public List<Users> findAll() throws IOException;
+    public List<Users> findUserAndRoleAll() throws IOException;
 }

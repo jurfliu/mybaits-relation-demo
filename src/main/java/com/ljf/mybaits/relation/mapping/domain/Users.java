@@ -16,6 +16,8 @@ public class Users {
     private Date birthday;
     //描述的是当前用户存在哪些订单
     private List<Orders> orderList;
+    //描述的是当前用户具备哪些角色
+    private List<Role> roleList;
     public int getId() {
         return id;
     }
@@ -48,6 +50,14 @@ public class Users {
         this.orderList = orderList;
     }
 
+    public List<Role> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<Role> roleList) {
+        this.roleList = roleList;
+    }
+
     @Override
     public String toString() {
         return "Users{" +
@@ -55,6 +65,7 @@ public class Users {
                 ", userName='" + userName + '\'' +
                 ", birthday=" + birthday +
                 ", orderList=" + orderList +
+                ", roleList=" + roleList +
                 '}';
     }
 }

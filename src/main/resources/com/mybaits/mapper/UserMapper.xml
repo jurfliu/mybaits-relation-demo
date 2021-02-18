@@ -11,6 +11,7 @@
         <!--配置集合信息
             property:集合名称
             ofType：当前集合中的数据类型
+            order 在mybaitsconfig.xml文件中给起了别名
         -->
         <collection property="orderList" ofType="order">
             <!--封装order的数据-->
@@ -23,7 +24,24 @@
     <select id="findAll" resultMap="userMap">
            SELECT o.id oid,o.order_time,o.total,u.id,u.user_name,u.birthday FROM tb_orders o,tb_users u WHERE o.uid=u.id
     </select>
+    <!--   n:n 的关联 -->
 
+    <resultMap id="userRoleMap" type="user">
+        <!--user的信息-->
+        <id column="userId" property="id"></id>
+        <result column="user_name" property="userName"></result>
+        <result column="birthday" property="birthday"></result>
+        <!--user内部的roleList信息  role是在mybaitsconfig.xml文件中给起了别名 -->
+        <collection property="roleList" ofType="role">
+            <id column="rid" property="id"></id>
+            <result column="role_name" property="roleName"></result>
+        </collection>
+    </resultMap>
+
+    <select id="findUserAndRoleAll" resultMap="userRoleMap">
+        select a.id uid,a.user_name,a.birthday,b.uid,b.rid,c.id cid ,c.role_name from tb_users as a ,tb_user_role as b ,tb_role as c
+        where a.id=b.uid and b.rid=c.id
+    </select>
 
 
 </mapper>

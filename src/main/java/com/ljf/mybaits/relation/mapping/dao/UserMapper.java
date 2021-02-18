@@ -9,5 +9,6 @@ import java.util.List;
 
 public interface UserMapper {
     List<Users> findAll() throws IOException;
+    public List<Users> findUserAndRoleAll();
 }
 
